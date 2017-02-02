@@ -1,5 +1,28 @@
 body {
-	font: "Arial";
-	background-color: #eee;
-	color: #111;
+	font-family: "Futura";
+	background-color: #f3f3fe;
+	margin: 0 auto;
+}
+
+a{
+	text-decoration: none;
+}
+
+.title{
+	font-size: 50px;
+	padding-right: 1em;
+	font-family: "Gotham"
+
+}
+
+header{
+	background-color: #0072b1;
+	word-spacing: 10px;
+	margin: 0 auto;
+}
+
+li{
+	list-style: none;
+	display: inline-table;
+	text-decoration: none;
 }
