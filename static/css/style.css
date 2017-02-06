@@ -1,28 +1,56 @@
 body {
-	font-family: "Futura";
-	background-color: #f3f3fe;
-	margin: 0 auto;
+    font-family: "Segoe UI";
+    background-color: #f3f3fe;
+    margin: 0 auto;
 }
 
 a{
-	text-decoration: none;
-}
-
-.title{
-	font-size: 50px;
-	padding-right: 1em;
-	font-family: "Gotham"
-
+    text-decoration: none;
 }
 
 header{
-	background-color: #0072b1;
-	word-spacing: 10px;
-	margin: 0 auto;
+	position: relative;
+    background-color: #586EE9;
+    z-index: 1;
 }
 
-li{
-	list-style: none;
-	display: inline-table;
-	text-decoration: none;
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.profile-picture{
+	display: flex;
+	justify-content: center;
+}
+
+.profile-picture img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border-color: #586EE9;
+    border-style: solid;
+}
+
+.nav-items{
+    float: right;
+}
+
+li a{
+    display: block;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: #111;
+}
+
+li {
+    display: inline-block;
 }
