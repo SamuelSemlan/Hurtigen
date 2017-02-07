@@ -1,1 +1,1 @@
-web: python hurtigen.py
+web: python3 hurtigen.py
