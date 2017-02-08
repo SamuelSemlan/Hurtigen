@@ -4,17 +4,10 @@ body {
     margin: 0 auto;
 }
 
-a{
-    text-decoration: none;
-}
-
 header{
 	position: relative;
     background-color: #586EE9;
-    z-index: 1;
 }
-
-
 
 ul {
     list-style-type: none;
@@ -43,7 +36,7 @@ ul {
 li a{
     display: block;
     color: white;
-    padding: 14px 16px;
+    padding: 0px 16px;
     text-decoration: none;
 }
 
