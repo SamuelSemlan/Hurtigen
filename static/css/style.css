@@ -33,17 +33,34 @@ ul {
     float: right;
 }
 
-li a{
+a{
     display: block;
     color: white;
     padding: 0px 16px;
     text-decoration: none;
 }
 
-li a:hover{
-    background-color: #111;
-}
-
 li {
     display: inline-block;
+}
+
+.main{
+    text-align: center;
+}
+
+label {
+    display: block;
+}
+
+label,
+input,
+textarea {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+form {
+    width: 100%;
+    max-width: 32rem;
+    padding-left: 2rem;
 }
