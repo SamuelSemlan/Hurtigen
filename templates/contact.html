@@ -5,12 +5,17 @@ About Us
 {% endblock %}
 
 {% block content %}
+<h2>Choose two numbers</h2>
 <form action="{{ url_for('contact') }}" method="post">
     <div>
-        <label for="id_name">Name:</label>
-        <input type="text" name="name">
-        <button type="submit">Submit</button>
+        <label for="id_first_number">First number:</label>
+        <input type="text" name="first_number">
     </div>
+    <div>
+        <label for="id_second_number">Second number:</label>
+        <input type="text" name="second_number">
+    </div>
+    <button type="Calculate">Calculate</button>
 </form>
 
 {% endblock %}
