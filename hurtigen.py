@@ -11,12 +11,10 @@ def home():
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
-        page = "{} + {} = {}".format(
-            request.form["first_number"],
-            request.form["second_number"],
-            int(request.form["first_number"]) + int(request.form["second_number"])
-            )
-        return page
+        request.form["name"],
+        request.form["email"],
+        request.form["message"]
+        return "Submitted"
     else:
         return render_template("contact.html")
 
