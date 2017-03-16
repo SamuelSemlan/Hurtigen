@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
+from forms import MyForm
 
 app = Flask("hurtigen")
+app.config["WTF_CSRF_ENABLED"] = False
 
 
 @app.route("/")
@@ -10,13 +12,11 @@ def home():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-    if request.method == "POST":
-        request.form["name"],
-        request.form["email"],
-        request.form["message"]
-        return "Submitted"
+    form = MyForm()
+    if form.validate_on_submit():
+        return "Hey there, {}!".format(form.name.data)
     else:
-        return render_template("contact.html")
+        return render_template("contact.html", form=form)
 
 @app.route("/profile")
 def profile():
