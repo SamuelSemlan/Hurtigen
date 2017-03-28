@@ -13,5 +13,6 @@ Vagrant.configure(2) do |config|
 	sudo apt-get install -y python3-pip
 	sudo pip3 install honcho
   sudo pip3 install -r /vagrant/requirements.txt
+  (cd /vagrant && sudo python3 /vagrant/install.py)
   SHELL
 end

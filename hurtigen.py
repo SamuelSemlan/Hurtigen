@@ -1,8 +1,18 @@
 from flask import Flask, render_template, request
 from forms import MyForm
+from database import db
 
 app = Flask("hurtigen")
 app.config["WTF_CSRF_ENABLED"] = False
+
+@app.before_request
+def before_request():
+	db.connect()
+
+@app.after_request
+def after_requst(response):
+	db.close()
+	return response
 
 
 @app.route("/")
