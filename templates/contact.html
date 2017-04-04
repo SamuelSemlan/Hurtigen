@@ -7,9 +7,28 @@ About Us
 {% block content %}
 <h2>Contact us</h2>
 <form action="{{ url_for('contact') }}" method="post">
+{% if form.errors %}
+<p class="errors">Please correct the form</p>
+{% endif %}
     <div>
         {{ form.name.label }}
+        {% if form.errors.name %}
+        <ul class="errors">
+        	{% for error in form.errors.name %}
+        	<li> {{ error }} </li>
+        	{% endfor %}
+        </ul>
+        {% endif %}
         {{ form.name }}
+        {{ form.message.label }}
+        {% if form.errors.message %}
+        <ul class="errors">
+        	{% for error in form.errors.message %}
+        	<li> {{ error }} </li>
+        	{% endfor %}
+        </ul>
+        {% endif %}
+        {{ form.message }}
     </div>
     <button type="submit">Submit</button>
 </form>
