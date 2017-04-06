@@ -5,7 +5,7 @@ from playhouse.db_url import connect
 DATABASE = "hurtigen"
 db = PostgresqlDatabase(DATABASE)
 
-DATABSE_URL = os.environ.get("DATABASE_URL")
+DATABASE_URL = os.environ.get("DATABASE_URL")
 if DATABASE_URL:
 	db = connect(DATABASE_URL)
 else:
