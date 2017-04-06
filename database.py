@@ -1,7 +1,16 @@
-from peewee import SqliteDatabase, Model, CharField
+import os
+from peewee import PostgresqlDatabase, Model, CharField
+from playhouse.db_url import connect
 
-DATABASE = "hurtigen.db"
-db = SqliteDatabase(DATABASE, threadlocals=True)
+DATABASE = "hurtigen"
+db = PostgresqlDatabase(DATABASE)
+
+DATABSE_URL = os.environ.get("DATABASE_URL")
+if DATABASE_URL:
+	db = connect(DATABASE_URL)
+else:
+	DATABASE = "hurtigen"
+	db = PostgresqlDatabase(DATABASE)
 
 class BaseModel(Model):
 	class Meta:
