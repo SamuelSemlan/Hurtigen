@@ -1,24 +1,43 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, make_response
 from forms import MyForm
+from forms import LoginForm
 from database import db
+import os
 
 app = Flask("hurtigen")
-app.config["WTF_CSRF_ENABLED"] = False
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "insecure dev key")
 
 @app.before_request
 def before_request():
 	db.connect()
 
 @app.after_request
-def after_requst(response):
+def after_request(response):
 	db.close()
 	return response
 
+
+@app.route("/hemliga/sida")
+def track_cookie():
+	visit = int(request.cookies.get("visit", 0))
+	if visit == 0:
+		text = "This is your first visit!"
+		resp = make_response(text)
+		resp.set_cookie("visit", str(1))
+		return resp
+	else:
+		return "Welcome back!"
 
 @app.route("/")
 def home():
 	return render_template("home.html")
 
+@app.route("/secret_locked", methods=["GET", "POST"])
+def secret_locked():
+#	password = int(session.get("password", 0))
+#	session["password"] = password
+	form = LoginForm()
+	return render_template("secret_locked.html", form=form)
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
@@ -31,6 +50,8 @@ def contact():
 @app.route("/profile")
 def profile():
 	return render_template("profile.html")
+
+
 
 @app.route("/settings")
 def settings():

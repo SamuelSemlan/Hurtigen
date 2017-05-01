@@ -4,3 +4,6 @@ from wtforms import StringField, TextAreaField, validators
 class MyForm(FlaskForm):
 	name = StringField("Name", [validators.InputRequired()])
 	message = TextAreaField("Message", [validators.InputRequired()])
+
+class LoginForm(FlaskForm):
+	password = StringField("Password", [validators.InputRequired()])
