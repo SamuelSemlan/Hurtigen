@@ -16,6 +16,9 @@ def after_request(response):
 	db.close()
 	return response
 
+@app.route("/")
+def home():
+	return render_template("home.html")
 
 @app.route("/hemliga/sida")
 def track_cookie():
@@ -28,16 +31,20 @@ def track_cookie():
 	else:
 		return "Welcome back!"
 
-@app.route("/")
-def home():
-	return render_template("home.html")
-
-@app.route("/secret_locked", methods=["GET", "POST"])
-def secret_locked():
-#	password = int(session.get("password", 0))
-#	session["password"] = password
+@app.route("/secret_page", methods=["GET", "POST"])
+def secret_page():
+	logged_in = int(session.get("logged_in", 0))
 	form = LoginForm()
-	return render_template("secret_locked.html", form=form)
+	if request.method == "POST":
+		if request.form["password"] == "test":
+			return "Correct!"
+		return render_template("secret_page.html", form=form)
+	else:
+		if logged_in == "1":
+			return "This is my secret page!"
+		else:
+			return render_template("secret_page.html", form=form)
+
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():

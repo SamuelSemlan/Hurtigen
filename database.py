@@ -19,3 +19,6 @@ class BaseModel(Model):
 class Contact(BaseModel):
 	email = CharField()	
 	message = CharField()
+
+class Password(BaseModel):
+	password = CharField()
