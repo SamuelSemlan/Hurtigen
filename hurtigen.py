@@ -31,12 +31,13 @@ def track_cookie():
 	else:
 		return "Welcome back!"
 
-@app.route("/secret_page", methods=["GET", "POST"])
+@app.route("/secret_page", methods=["POST", "GET"])
 def secret_page():
-	logged_in = int(session.get("logged_in", 0))
+	logged_in = str(session.get("logged_in", "0"))
 	form = LoginForm()
 	if request.method == "POST":
 		if request.form["password"] == "test":
+			session["logged_in"] = "1"
 			return "Correct!"
 		return render_template("secret_page.html", form=form)
 	else:
