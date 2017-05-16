@@ -1,22 +1,22 @@
 from flask import Flask, render_template, request, session, make_response
+from flask_security import Security, PeeweeUserDatastore, login_required
 from forms import MyForm
 from forms import LoginForm
-from database import db
+from database import db, User, Role, UserRoles
 import os
 
 app = Flask("hurtigen")
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "insecure dev key")
+app.config["WTF_CSRF_ENABLED"] = False
+app.config["SECURITY_USER_IDENTITY_ATTRIBUTES"] = "email"
+app.config["SECURITY_PASSWORD_HASH"] = "pbkdf2_sha512"
+app.config["SECURITY_PASSWORD_SALT"] = app.config["SECRET_KEY"]
 
-@app.before_request
-def before_request():
-	db.connect()
-
-@app.after_request
-def after_request(response):
-	db.close()
-	return response
+user_datastore = PeeweeUserDatastore(db, User, Role, UserRoles)
+security = Security(app, user_datastore)
 
 @app.route("/")
+@login_required
 def home():
 	return render_template("home.html")
 
